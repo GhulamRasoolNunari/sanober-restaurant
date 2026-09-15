@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>antix_r - Fine Dining &amp; Culinary Art</title>
+<!-- PWA Meta Tags -->
+<meta content="#1a1816" name="theme-color"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="antix_r" name="apple-mobile-web-app-title"/>
+<meta content="Experience the perfect blend of taste, ambiance, and hospitality at antix_r." name="description"/>
+<link href="data:application/manifest+json,%7B%22name%22%3A%22antix_r%20Restaurant%22%2C%22short_name%22%3A%22antix_r%22%2C%22start_url%22%3A%22%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%231a1816%22%2C%22theme_color%22%3A%22%23c28c46%22%7D" rel="manifest"/>
+<!-- Google Fonts & Lucide Icons CDN -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://unpkg.com/lucide@latest"></script>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              gold: '#c49756',
+              goldHover: '#ae813e',
+              dark: '#141210',
+              cardDark: '#1c1916',
+              borderDark: '#2a2622',
+              lightBg: '#fbf9f6',
+              lightCard: '#ffffff',
+              warmGray: '#716e6a',
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Styles for Theme Refinements -->
+<style data-purpose="typography">
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #fbf9f6;
+      color: #2b2825;
+    }
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+  </style>
+<style data-purpose="layout">
+    .ornament-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #c49756;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+    .ornament-line::before, .ornament-line::after {
+      content: '❖';
+      font-size: 0.65rem;
+      opacity: 0.75;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #c49756;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+<!-- BEGIN: PWA Install Banner -->
+<div class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-11/12 max-w-md bg-brand-cardDark text-white p-4 rounded-2xl shadow-2xl border border-brand-gold/30 flex items-center justify-between gap-4 backdrop-blur-lg" id="pwa-install-banner">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-brand-gold flex items-center justify-center font-serif text-xl font-bold text-black">
+        a
+      </div>
+<div>
+<p class="font-semibold text-sm">Install antix_r App</p>
+<p class="text-xs text-gray-400">Order faster &amp; reserve tables</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="text-xs text-gray-400 hover:text-white px-2 py-1" id="pwa-close-btn">Dismiss</button>
+<button class="bg-brand-gold hover:bg-brand-goldHover text-black text-xs font-semibold px-4 py-2 rounded-lg transition-all" id="pwa-install-btn">Install</button>
+</div>
+</div>
+<!-- END: PWA Install Banner -->
+<!-- BEGIN: MainHeader -->
+<header class="bg-brand-dark text-white sticky top-0 z-40 border-b border-brand-borderDark/60 transition-all">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+<!-- Brand Logo -->
+<a class="font-serif text-2xl tracking-wider font-semibold hover:text-brand-gold transition-colors flex items-center gap-1" href="#">
+        antix_r
+      </a>
+<!-- Desktop Navigation Menu -->
+<nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
+<a class="text-brand-gold hover:text-brand-goldHover transition-colors" href="#home">Home</a>
+<a class="hover:text-brand-gold transition-colors" href="#menu">Menu</a>
+<a class="hover:text-brand-gold transition-colors" href="#about">About Us</a>
+<a class="hover:text-brand-gold transition-colors" href="#chefs">Chefs</a>
+<a class="hover:text-brand-gold transition-colors" href="#blog">Blog</a>
+<a class="hover:text-brand-gold transition-colors" href="#contact">Contact</a>
+</nav>
+<!-- Reservation Header Button -->
+<div class="hidden md:flex items-center">
+<a class="border border-brand-gold text-brand-gold px-5 py-2.5 rounded-full text-xs uppercase tracking-widest font-semibold hover:bg-brand-gold hover:text-black transition-all duration-300" href="#reservation">
+          Book a Table
+        </a>
+</div>
+<!-- Mobile Menu Toggle Button -->
+<button aria-label="Open Navigation" class="md:hidden text-gray-300 hover:text-brand-gold focus:outline-none" id="mobile-menu-btn">
+<i class="w-6 h-6" data-lucide="menu"></i>
+</button>
+</div>
+<!-- Mobile Drawer Menu -->
+<div class="hidden md:hidden bg-brand-cardDark border-b border-brand-borderDark px-6 py-6 space-y-4" id="mobile-menu">
+<a class="block text-brand-gold font-medium py-1" href="#home">Home</a>
+<a class="block text-gray-300 hover:text-brand-gold font-medium py-1" href="#menu">Menu</a>
+<a class="block text-gray-300 hover:text-brand-gold font-medium py-1" href="#about">About Us</a>
+<a class="block text-gray-300 hover:text-brand-gold font-medium py-1" href="#chefs">Chefs</a>
+<a class="block text-gray-300 hover:text-brand-gold font-medium py-1" href="#blog">Blog</a>
+<a class="block text-gray-300 hover:text-brand-gold font-medium py-1" href="#contact">Contact</a>
+<div class="pt-2">
+<a class="block text-center border border-brand-gold text-brand-gold px-4 py-2.5 rounded-full text-xs uppercase tracking-widest font-semibold hover:bg-brand-gold hover:text-black transition-all" href="#reservation">
+          Book a Table
+        </a>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<main>
+<!-- BEGIN: HeroSection -->
+<section class="bg-brand-dark text-white pt-8 pb-16 lg:pt-14 lg:pb-24 overflow-hidden" id="home">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+<!-- Left Column: Copy & Actions -->
+<div class="lg:col-span-7 space-y-6">
+<span class="text-brand-gold text-xs uppercase tracking-[0.2em] font-semibold block">
+              A Culinary Journey Like No Other
+            </span>
+<h1 class="text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.15] text-white">
+              Good Food <br/>
+<span class="italic font-serif">Great Moments</span>
+</h1>
+<p class="text-gray-400 text-sm sm:text-base max-w-lg leading-relaxed">
+              Experience the perfect blend of taste, ambiance, and hospitality. Every dish is crafted with love and passion.
+            </p>
+<div class="flex flex-wrap items-center gap-4 pt-2">
+<a class="bg-brand-gold hover:bg-brand-goldHover text-black px-7 py-3 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300" href="#menu">
+                Explore Menu
+              </a>
+<a class="border border-brand-borderDark hover:border-brand-gold text-gray-300 hover:text-white px-7 py-3 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300" href="#about">
+                Our Story
+              </a>
+</div>
+<!-- Key Statistics Strip -->
+<div class="pt-8 border-t border-brand-borderDark/80 flex flex-wrap items-center gap-8 sm:gap-12">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-brand-cardDark border border-brand-borderDark flex items-center justify-center text-brand-gold">
+<i class="w-4 h-4" data-lucide="utensils"></i>
+</div>
+<div>
+<h4 class="text-xl font-bold text-white">20+</h4>
+<p class="text-xs text-gray-400">Dishes</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-brand-cardDark border border-brand-borderDark flex items-center justify-center text-brand-gold">
+<i class="w-4 h-4" data-lucide="chef-hat"></i>
+</div>
+<div>
+<h4 class="text-xl font-bold text-white">15+</h4>
+<p class="text-xs text-gray-400">Chefs</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-brand-cardDark border border-brand-borderDark flex items-center justify-center text-brand-gold">
+<i class="w-4 h-4" data-lucide="smile"></i>
+</div>
+<div>
+<h4 class="text-xl font-bold text-white">10k+</h4>
+<p class="text-xs text-gray-400">Happy Customers</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Hero Visual Showcase -->
+<div class="lg:col-span-5 relative">
+<div class="relative mx-auto max-w-md lg:max-w-none">
+<!-- Circular Primary Platter Showcase -->
+<div class="w-72 h-72 sm:w-96 sm:h-96 mx-auto rounded-full overflow-hidden border-4 border-brand-borderDark/90 shadow-2xl relative">
+<img alt="Delicious gourmet dish with seasoned ribs and vegetables" class="w-full h-full object-cover object-center transform hover:scale-105 transition duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoXg5htIhoP6WlPyiZKTc2gdk8caE0e42ZY0CSkdyI54qO_Hd4--izcq6qZB40j2WbX19okjFr_9FwdgRQ68A79rvUhomNXdLqESW4qzw0snTP3yHKOkZprC_P0O_36BzQzSUUGYkmWbTn6zgWFvFsF5bNLFgp3B4-McfGS9oJR-Z6C253EqHnaygmr1DFphs0IjicL5H2lPjBYtmsrn1LzPtMSWf-ZjMT4U15iygYldloZ6ywrIZTag"/>
+</div>
+<!-- Decorative floating badge -->
+<div class="absolute -bottom-4 right-4 sm:right-10 bg-brand-cardDark/90 backdrop-blur-md border border-brand-gold/40 p-3 rounded-2xl shadow-xl flex items-center gap-3">
+<div class="bg-brand-gold/20 p-2 rounded-full text-brand-gold">
+<i class="w-5 h-5" data-lucide="award"></i>
+</div>
+<div>
+<p class="text-[11px] uppercase tracking-wider text-gray-400 font-semibold">Michelin Star Quality</p>
+<p class="text-xs font-semibold text-white">Artisan Flavors</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Lunch & Dinner Times Cards Strip -->
+<div class="mt-14 pt-8 border-t border-brand-borderDark/60 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+<!-- Lunch Badge -->
+<div class="bg-brand-cardDark/70 border border-brand-borderDark p-4 rounded-2xl flex items-center gap-4">
+<img alt="Lunch menu dish" class="w-16 h-16 rounded-xl object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSXktxtkBYYhyiY3O009xrTGOILna4iYqDStMoeHZt8duXTLC1pbLNKsizHa-ylrRrYyJ_WA-KROIoEekrlIdB49NBCFTtBdI7O39q5pfkaPOsSt5zAn5ni8i1yo_wOL6BwTDn2fok0z1FPyGyRDrZmFfDkL0l2A3LPkVbPSU43pFw5j4RI5-QdPf582tfUA8RF1CguukYSA-zrThOAsop3fulEVzYhALZmWVqd8CjMFtNZdVtZORlwg"/>
+<div>
+<h4 class="font-serif text-lg text-white font-medium">Lunch</h4>
+<p class="text-xs text-brand-gold font-medium">12:00 - 4:00 PM</p>
+<p class="text-xs text-gray-400 mt-0.5">Fresh salads, pastas, and gourmet rolls</p>
+</div>
+</div>
+<!-- Dinner Badge -->
+<div class="bg-brand-cardDark/70 border border-brand-borderDark p-4 rounded-2xl flex items-center gap-4">
+<img alt="Dinner menu dish" class="w-16 h-16 rounded-xl object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUu6nBwUpxXaUtB2OLdQ6aq12ZqArUXr4SNbzwNe20ulbAq10zrrSXQJlbPzaqJiKJ7CJ63roMFxHEebant-OsYXV4rOZUTw7L0xiVxN_GUdggTGxqrjm1WhCT-pmn5utX-FxDtKFJBPFRENozY73oaQ1OQT3c8wvnSO6rkxBYcZJlC3QfOJwP4qBB02f2QfAiTcz8f1HqhS0TLjCUET8VX7vpcH_xX6bmUQYXNYlwnFdKZOm1Oasfng"/>
+<div>
+<h4 class="font-serif text-lg text-white font-medium">Dinner</h4>
+<p class="text-xs text-brand-gold font-medium">6:00 - 11:00 PM</p>
+<p class="text-xs text-gray-400 mt-0.5">Dry-aged cuts, seafood &amp; fine wines</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: PopularPicksSection -->
+<section class="py-16 lg:py-24 bg-brand-lightBg" id="popular">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<span class="ornament-line">Our Popular Picks</span>
+<h2 class="text-3xl sm:text-4xl font-serif mt-2 mb-8 text-stone-900">Handcrafted Favorites</h2>
+<!-- Category Filters -->
+<div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12 text-xs font-semibold uppercase tracking-wider">
+<button class="bg-brand-gold text-black px-5 py-2 rounded-full shadow-sm">All</button>
+<button class="bg-transparent hover:bg-stone-200 text-stone-600 px-5 py-2 rounded-full transition-all">Starters</button>
+<button class="bg-transparent hover:bg-stone-200 text-stone-600 px-5 py-2 rounded-full transition-all">Main Course</button>
+<button class="bg-transparent hover:bg-stone-200 text-stone-600 px-5 py-2 rounded-full transition-all">Beverages</button>
+<button class="bg-transparent hover:bg-stone-200 text-stone-600 px-5 py-2 rounded-full transition-all">Desserts</button>
+</div>
+<!-- 4 Grid Dish Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Dish 1 -->
+<div class="bg-white rounded-3xl p-6 shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center group">
+<div class="w-36 h-36 rounded-full overflow-hidden mb-5 border-4 border-amber-100/50 shadow-inner group-hover:scale-105 transition duration-300">
+<img alt="Truffle Pasta" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrJkU4v3prI9NOcR0RCVeUolCiJPjx_58pXrgewYcK0TkmwAZqM9TMgD5D1PoJ3M4_wDSuO4nLvmzN9hyUSVk1ho32aYmt8m8TsCsztLqeSDGczeJhak4vvW8_LCvBKzxZoWh8qNk-7r9iq-AH8Z6r0zOIOChArTVvquWcs7uinos6rZKxT_UthtRqpN2cW2bM-AljyVr-AtItI7PAKin5L_I2xaFsrkz7caLJAQnEUU5Vgx6Xw2yuiw"/>
+</div>
+<h3 class="font-serif text-lg font-bold text-stone-900 mb-1">Truffle Pasta</h3>
+<p class="text-xs text-stone-500 mb-4 h-9 flex items-center justify-center">Creamy truffle sauce with mushrooms &amp; parmesan</p>
+<div class="w-full flex items-center justify-between pt-3 border-t border-stone-100">
+<span class="font-bold text-stone-900 text-base">$18.50</span>
+<button aria-label="Add Truffle Pasta" class="w-8 h-8 rounded-full bg-brand-gold text-black flex items-center justify-center hover:bg-brand-goldHover transition-colors">
+<i class="w-4 h-4" data-lucide="plus"></i>
+</button>
+</div>
+</div>
+<!-- Dish 2 -->
+<div class="bg-white rounded-3xl p-6 shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center group">
+<div class="w-36 h-36 rounded-full overflow-hidden mb-5 border-4 border-amber-100/50 shadow-inner group-hover:scale-105 transition duration-300">
+<img alt="Grilled Salmon" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrW6rIuzYQgvLfAdJx_d_OvlXUeWlWPtk2LhuAOSptaWY6xWghqNb1h-68ui6axQYCBumotraUpAphk25shzxzNcBgiCEE2jk-3-xQ1r1k4YIcm2bLvnP1Os2aFDEIKq0maFncrtiDV3i3hTNu1mAG_IynpbDjXRlSLrziNebaVeJz9zlv6-J419lNBP_6R-urH6fLAL4elfLicIx0e1UyHad2I8RLeMJ2dqcgjw4O7kkejMr2wK06gw"/>
+</div>
+<h3 class="font-serif text-lg font-bold text-stone-900 mb-1">Grilled Salmon</h3>
+<p class="text-xs text-stone-500 mb-4 h-9 flex items-center justify-center">Fresh salmon with lemon butter sauce &amp; veggies</p>
+<div class="w-full flex items-center justify-between pt-3 border-t border-stone-100">
+<span class="font-bold text-stone-900 text-base">$24.00</span>
+<button aria-label="Add Grilled Salmon" class="w-8 h-8 rounded-full bg-brand-gold text-black flex items-center justify-center hover:bg-brand-goldHover transition-colors">
+<i class="w-4 h-4" data-lucide="plus"></i>
+</button>
+</div>
+</div>
+<!-- Dish 3 -->
+<div class="bg-white rounded-3xl p-6 shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center group">
+<div class="w-36 h-36 rounded-full overflow-hidden mb-5 border-4 border-amber-100/50 shadow-inner group-hover:scale-105 transition duration-300">
+<img alt="Beef Burger" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCizHAvdirmUVVbrl868h18LQmU17lCRQ3xV88X5hDva4S06XIA5ULao8lbMUcVigDEWpD6ZhL4uwaeEJtHBBJV56-ID-JyI_3a3NzjrNRuXacP2aaLS21MQea2utKvWt9_fTI2eYt_MW9s-D-7-Wl6Q2dvF8H-33BvkpJxuWJWIMBw-jCtVY1K0Fx6mLiaYGs3PPrM6AkmhmQP19Z046jdv4OSXuMTNLmeXP9n8_s8vvttz6wCLTZDIw"/>
+</div>
+<h3 class="font-serif text-lg font-bold text-stone-900 mb-1">Beef Burger</h3>
+<p class="text-xs text-stone-500 mb-4 h-9 flex items-center justify-center">Juicy grilled beef patty with cheddar &amp; fries</p>
+<div class="w-full flex items-center justify-between pt-3 border-t border-stone-100">
+<span class="font-bold text-stone-900 text-base">$16.00</span>
+<button aria-label="Add Beef Burger" class="w-8 h-8 rounded-full bg-brand-gold text-black flex items-center justify-center hover:bg-brand-goldHover transition-colors">
+<i class="w-4 h-4" data-lucide="plus"></i>
+</button>
+</div>
+</div>
+<!-- Dish 4 -->
+<div class="bg-white rounded-3xl p-6 shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center group">
+<div class="w-36 h-36 rounded-full overflow-hidden mb-5 border-4 border-amber-100/50 shadow-inner group-hover:scale-105 transition duration-300">
+<img alt="Chocolate Lava Cake" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDloLDjQDjalOrv48Fcn_zGovY8txV5cNorg8m1PNev35-fyejLe0WeJGf8uxv-msxyv01o2U424L99kZg4ONB0-XcKy2uvmYGdtd1jS-9hgVCELfVAAGwBcbh2REfUkAw_lTKpwg8EChFmasyIkd3CiPD3YMQOptHdSvIeMPVjtgkuOQJraCLejb7shNeVbnYMmEGx9ko4davaAisTvi3q14Z34ZM5WWrSgb2PjJwFOi7RxZwG_6pJHg"/>
+</div>
+<h3 class="font-serif text-lg font-bold text-stone-900 mb-1">Chocolate Lava Cake</h3>
+<p class="text-xs text-stone-500 mb-4 h-9 flex items-center justify-center">Warm chocolate cake with vanilla ice cream</p>
+<div class="w-full flex items-center justify-between pt-3 border-t border-stone-100">
+<span class="font-bold text-stone-900 text-base">$9.50</span>
+<button aria-label="Add Chocolate Lava Cake" class="w-8 h-8 rounded-full bg-brand-gold text-black flex items-center justify-center hover:bg-brand-goldHover transition-colors">
+<i class="w-4 h-4" data-lucide="plus"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Center CTA -->
+<div class="mt-12">
+<a class="inline-block bg-brand-gold hover:bg-brand-goldHover text-black font-semibold text-xs tracking-wider uppercase px-8 py-3.5 rounded-full transition-all" href="#menu">
+            View Full Menu
+          </a>
+</div>
+</div>
+</section>
+<!-- END: PopularPicksSection -->
+<!-- BEGIN: TodaysSpecialSection -->
+<section class="py-16 lg:py-24 bg-brand-dark text-white relative">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<span class="ornament-line">Today's Special</span>
+<h2 class="text-3xl sm:text-4xl font-serif mt-2 text-white">Chef's Curated Selection</h2>
+<p class="text-xs text-brand-gold tracking-widest uppercase mt-2 font-medium">Available Today 12:00 PM - 11:00 PM</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Special 1 -->
+<div class="bg-brand-cardDark border border-brand-borderDark rounded-2xl overflow-hidden group hover:border-brand-gold/60 transition-all">
+<div class="relative h-44 overflow-hidden">
+<span class="absolute top-3 left-3 bg-brand-gold text-black text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow z-10">Today's Special</span>
+<img alt="Saffron Risotto" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyMyaeeAjtTaRl5rWtb8imm4MRYAJoP4kz_kPlPTbegyciIjSAnAVNRWofrCIA960MyCnOQ9BTU9rzZIA4z5ux4vEziJR_Hcv0z35vTvKnjdg0Ity7g8Q_rq9g7q0J6fOQQcoSjtyYjb1za7VIktrOh9aNALA53pQDZDSjgSunGtbjVkBEEVbPaaYAMBFev-WlGIWdzaFW1u-H_fePUez5ORRcGpOiPFRUlbDynjsUfyl2v2_tYjdddw"/>
+</div>
+<div class="p-5">
+<h3 class="font-serif text-lg font-medium text-white mb-1">Saffron Risotto</h3>
+<p class="text-xs text-gray-400 mb-4">Creamy risotto with saffron and parmesan</p>
+<div class="flex items-center justify-between">
+<span class="text-brand-gold font-bold text-base">$19.50</span>
+<span class="text-xs text-gray-500 uppercase tracking-widest">Seasonal</span>
+</div>
+</div>
+</div>
+<!-- Special 2 -->
+<div class="bg-brand-cardDark border border-brand-borderDark rounded-2xl overflow-hidden group hover:border-brand-gold/60 transition-all">
+<div class="relative h-44 overflow-hidden">
+<span class="absolute top-3 left-3 bg-brand-gold text-black text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow z-10">Today's Special</span>
+<img alt="Lamb Chops" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8foU43appbNKCcZ93Bd7_GlErAu0tX_xFwd8bUmeJ2OjwVy7L0JXbz6Rv1OClyXsp2u_Qai-NZq8iFLkvmqjbGk-ll19vHwlYKerBah8gFAl4mKA9RXRIe8kmTx2OjroOHPq_X1YVtftFd_zw7HvPGHQBNn6w_VsXZiVw0KbLPOe2sDxXIY5XRWyH8O1ZxXcxEC9TT-PieDiyhHO4aIU2-WZ_dG3WXCNcLxd0ybCyT3pR8a3y4Zfdgg"/>
+</div>
+<div class="p-5">
+<h3 class="font-serif text-lg font-medium text-white mb-1">Lamb Chops</h3>
+<p class="text-xs text-gray-400 mb-4">Grilled lamb chops with rosemary &amp; garlic</p>
+<div class="flex items-center justify-between">
+<span class="text-brand-gold font-bold text-base">$27.00</span>
+<span class="text-xs text-gray-500 uppercase tracking-widest">Signature</span>
+</div>
+</div>
+</div>
+<!-- Special 3 -->
+<div class="bg-brand-cardDark border border-brand-borderDark rounded-2xl overflow-hidden group hover:border-brand-gold/60 transition-all">
+<div class="relative h-44 overflow-hidden">
+<span class="absolute top-3 left-3 bg-brand-gold text-black text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow z-10">Today's Special</span>
+<img alt="Seafood Platter" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwn1PkR1BTNqpZx4Ig9te1di62DVmoZsUNTBUtpKU_yIKSU3nMCYGXAI1_wqKzGZPfSB-BTFBhrxQHTMw6sRj9HftlfFSF0PJD62mceVTstVNaWoMFk9q_CJl6mfSU3aqIC0igJQV4RwWUG1a4CSPYxIXnaKnJSUubE4SEI2K_WodyDUVsBh5ItQs_D5fLYNurVUtTr5KV2OoJZCxjnSEgEE3aljGsglqYia87egkTlx1uyBq1o73yFw"/>
+</div>
+<div class="p-5">
+<h3 class="font-serif text-lg font-medium text-white mb-1">Seafood Platter</h3>
+<p class="text-xs text-gray-400 mb-4">A delightful mix of fresh caught seafood</p>
+<div class="flex items-center justify-between">
+<span class="text-brand-gold font-bold text-base">$32.00</span>
+<span class="text-xs text-gray-500 uppercase tracking-widest">Premium</span>
+</div>
+</div>
+</div>
+<!-- Special 4 -->
+<div class="bg-brand-cardDark border border-brand-borderDark rounded-2xl overflow-hidden group hover:border-brand-gold/60 transition-all">
+<div class="relative h-44 overflow-hidden">
+<span class="absolute top-3 left-3 bg-brand-gold text-black text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow z-10">Today's Special</span>
+<img alt="Berry Cheesecake" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6I75FHf0BqV2H7kSUJtagvlkipmPd1TovBD-2684xaTl8fAvConDelWh6VMv8YOKXZZpIwq_Mqo0e0J9zFZQlptCfJT0uncmt9AKO51zu1Y7bB2-NY3dWKCTocCCa-eCu9TaQH-j6RBhom_ZdXqStx4WbtCDJuSCEHDFOF6sO0pb6anuxA8MuHsHWZ1FY2q2W7aqfgsZHsMPSLWiBQlaiX_rGkP5wjP84qx5E32DFhW0RqcX9vl0_OQ"/>
+</div>
+<div class="p-5">
+<h3 class="font-serif text-lg font-medium text-white mb-1">Berry Cheesecake</h3>
+<p class="text-xs text-gray-400 mb-4">Cheesecake topped with fresh organic berries</p>
+<div class="flex items-center justify-between">
+<span class="text-brand-gold font-bold text-base">$8.50</span>
+<span class="text-xs text-gray-500 uppercase tracking-widest">Sweet Treat</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-10 text-center">
+<button class="bg-brand-gold hover:bg-brand-goldHover text-black text-xs font-bold uppercase tracking-wider px-8 py-3 rounded-full transition-all">
+            View All Specials
+          </button>
+</div>
+</div>
+</section>
+<!-- END: TodaysSpecialSection -->
+<!-- BEGIN: FeaturesRow -->
+<section class="py-14 bg-white border-b border-stone-200" id="about">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+<div class="p-4 flex flex-col items-center">
+<div class="w-14 h-14 rounded-full bg-amber-50 text-brand-gold flex items-center justify-center mb-3">
+<i class="w-6 h-6" data-lucide="leaf"></i>
+</div>
+<h3 class="font-serif text-base font-semibold text-stone-900 mb-1">Fresh Ingredients</h3>
+<p class="text-xs text-stone-500 max-w-xs">We use only the freshest and highest quality ingredients daily.</p>
+</div>
+<div class="p-4 flex flex-col items-center">
+<div class="w-14 h-14 rounded-full bg-amber-50 text-brand-gold flex items-center justify-center mb-3">
+<i class="w-6 h-6" data-lucide="award"></i>
+</div>
+<h3 class="font-serif text-base font-semibold text-stone-900 mb-1">Expert Chefs</h3>
+<p class="text-xs text-stone-500 max-w-xs">Our chefs are highly trained and passionate about culinary craft.</p>
+</div>
+<div class="p-4 flex flex-col items-center">
+<div class="w-14 h-14 rounded-full bg-amber-50 text-brand-gold flex items-center justify-center mb-3">
+<i class="w-6 h-6" data-lucide="coffee"></i>
+</div>
+<h3 class="font-serif text-base font-semibold text-stone-900 mb-1">Cozy Ambience</h3>
+<p class="text-xs text-stone-500 max-w-xs">A warm and welcoming atmosphere tailor-made for every occasion.</p>
+</div>
+<div class="p-4 flex flex-col items-center">
+<div class="w-14 h-14 rounded-full bg-amber-50 text-brand-gold flex items-center justify-center mb-3">
+<i class="w-6 h-6" data-lucide="clock"></i>
+</div>
+<h3 class="font-serif text-base font-semibold text-stone-900 mb-1">Fast Service</h3>
+<p class="text-xs text-stone-500 max-w-xs">Enjoy your exquisite meal with prompt and friendly dining service.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: FeaturesRow -->
+<!-- BEGIN: MenuSection -->
+<section class="py-16 lg:py-24 bg-brand-lightBg" id="menu">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-10">
+<span class="ornament-line">Our Menu</span>
+<h2 class="text-3xl sm:text-4xl font-serif mt-2 text-stone-900">Culinary Excellence</h2>
+</div>
+<!-- Menu Tabs -->
+<div class="flex items-center justify-center gap-2 sm:gap-6 border-b border-stone-200 pb-4 mb-10 overflow-x-auto custom-scrollbar">
+<button class="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold px-4 py-2 rounded-full bg-brand-gold text-black shadow-sm shrink-0">
+<i class="w-4 h-4" data-lucide="salad"></i> Starters
+          </button>
+<button class="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold px-4 py-2 rounded-full text-stone-600 hover:text-stone-900 hover:bg-stone-200 transition-all shrink-0">
+<i class="w-4 h-4" data-lucide="utensils"></i> Main Course
+          </button>
+<button class="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold px-4 py-2 rounded-full text-stone-600 hover:text-stone-900 hover:bg-stone-200 transition-all shrink-0">
+<i class="w-4 h-4" data-lucide="glass-water"></i> Beverages
+          </button>
+<button class="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold px-4 py-2 rounded-full text-stone-600 hover:text-stone-900 hover:bg-stone-200 transition-all shrink-0">
+<i class="w-4 h-4" data-lucide="cake"></i> Desserts
+          </button>
+</div>
+<!-- Two Column Menu List -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+<!-- Column 1 -->
+<div class="space-y-6">
+<!-- Item 1 -->
+<div class="flex items-center justify-between group p-2 rounded-xl hover:bg-white transition-all">
+<div class="flex items-center gap-4">
+<img alt="Bruschetta" class="w-14 h-14 rounded-xl object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmIf8_83l32fwIu6JMCHBeFZd_Apmmxjw0kU3lK0dWesYMyQSZtSNBsWxIJCG3uKs9PqAVnpVYBsn2muaUgrcRtPdNKOz1IlElaXbC05j_Gwb1AymDj4t1Z91SDREGFBozl-efsRm_jEDsg6wCRa9DXfIH2a2v6QhOx4cEep3bnssrlQrDjXSs2_T7orA3h6hVorbGpH9J97-E8VEq05P9EDiE4RtObepiQ-0c_br446DoHdTUqx18dg"/>
+<div>
+<h4 class="font-serif text-base font-semibold text-stone-900">Bruschetta</h4>
+<p class="text-xs text-stone-500">Grilled bread with tomatoes, garlic, basil</p>
+</div>
+</div>
+<span class="font-bold text-stone-800 text-sm">$7.50</span>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between group p-2 rounded-xl hover:bg-white transition-all">
+<div class="flex items-center gap-4">
+<img alt="Caesar Salad" class="w-14 h-14 rounded-xl object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZguI13bQQ191HLTspQLW6OMuaYOKBKcBzJh2HZ_-L-M1NbRomCGsBDd1ISatBwC298DKxtYCs4e1s4BwTwn7ZvOe9RrjOJtokxFoV07yyQ2LeekYCmAr__JZWNKNA2S_i20rqAQAd3jdh8WsF9ZtUUoBFhohtNH2q0IQex0Za59KsKTibywRItG0GEhSyDzihyHILaojzk-drjxnoH5DVuIbpLUO1MzD141uHdQqa9rvXrDx_1qePQA"/>
+<div>
+<h4 class="font-serif text-base font-semibold text-stone-900">Caesar Salad</h4>
+<p class="text-xs text-stone-500">Crisp romaine with creamy caesar dressing</p>
+</div>
+</div>
+<span class="font-bold text-stone-800 text-sm">$8.50</span>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center justify-between group p-2 rounded-xl hover:bg-white transition-all">
+<div class="flex items-center gap-4">
+<img alt="Tomato Soup" class="w-14 h-14 rounded-xl object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc0eX7cMyjRmiQkA2-2lvNbvDLXyRpiEA4iOep5KSAC2DIuyiw-MaQV9BNawPv1_KYz5kWRZP7UpjYsOEHexgmY_0zVXu2BidBGAAccejWTSft40blxeT9y2fmawyOrk4WyDm_p9K33SVtghSaAYD2Rg1TJlDmVjMAM6LiZi7HpMHm5STccUoEqKzaMa7L0JxHNbpSurVfR5WCDLV0qz7ahSdcbVaPUY6pmfC7WVD0eaH_Ha7_2Pio6g"/>
+<div>
+<h4 class="font-serif text-base font-semibold text-stone-900">Tomato Soup</h4>
+<p class="text-xs text-stone-500">Creamy tomato soup with fresh fragrant basil</p>
+</div>
+</div>
+<span class="font-bold text-stone-800 text-sm">$6.50</span>
+</div>
+<!-- Item 4 -->
+<div class="flex items-center justify-between group p-2 rounded-xl hover:bg-white transition-all">
+<div class="flex items-center gap-4">
+<img alt="Margherita Pizza" class="w-14 h-14 rounded-xl object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6GTu7HTaIolr-yxf60q9qA0jspnTPXnPvGCZsA0nj6WCQ8Cs2NdHHMPF7KShYmKoyzxF5JsnFeTr2SvHyfRqaMgopL86PRv1BJPOo4xhP4m2qES1NCa7MtK3BMdYyDsw9e1_ys9-GPA_2AWHAqhMSOv2sQ4SpoaJ_6IB-ku4s7ah2009RRoHUksH0r8BI591XVzETIUaEe6CGJEPDcutg6HqA3QcrH47AjWMWZISuXsP3WBHnSfFgZA"/>
+<div>
+<h4 class="font-serif text-base font-semibold text-stone-900">Margherita Pizza</h4>
+<p class="text-xs text-stone-500">Classic pizza with tomato sauce &amp; mozzarella</p>
+</div>
+</div>
+<span class="font-bold text-stone-800 text-sm">$13.50</span>
+</div>
+</div>
+<!-- Column 2 -->
+<div class="space-y-6">
+<!-- Item 5 -->
+<div class="flex items-center justify-between group p-2 rounded-xl hover:bg-white transition-all">
+<div class="flex items-center gap-4">
+<img alt="Chicken Alfredo" class="w-14 h-14 rounded-xl object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEn5rMJTib5xN7X09fhVcGKMGMQ3N__FdwRVzZapoLdXlftSNXur-VVtNo5U-trsIUILe2q2hJNwEuVDWoFvmrx3TPZWISXuFbysdzQ1jYvZWkbwtA9zmzEoxVz9SazG3STtg3yPUBgnZ3qLKbTwDW4ISlooIUDnHlmdIoJALKPlgFYYiQ7tG9eP-LGsfk5isICTmTIjX9vi19hG66XgFlE_JgTr4iFXh2dD_JOcb3081EWdpLitZaiw"/>
+<div>
+<h4 class="font-serif text-base font-semibold text-stone-900">Chicken Alfredo</h4>
+<p class="text-xs text-stone-500">Creamy alfredo sauce with grilled chicken</p>
+</div>
+</div>
+<span class="font-bold text-stone-800 text-sm">$17.50</span>
+</div>
+<!-- Item 6 -->
+<div class="flex items-center justify-between group p-2 rounded-xl hover:bg-white transition-all">
+<div class="flex items-center gap-4">
+<img alt="Beef Steak" class="w-14 h-14 rounded-xl object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUAqFqFYakyDEt1RsqQyjHYMfAtAFrHIJl-BFANi_99ud92BKpJcXXwgjlPfX3Scioe6vVbhFoiTKCUfMkhW4zfut-kiop-r2tDCESTykuXMkN4uSc-0JEJqsUJGhhrihErM-vlIzIGKZFK9SazIR2YcQomdUc4gLEihbqxQLfOZz3URgCfISF1QykARdqyHBNYnzVnaOG6l63UHYJNEu0TUD8G8dBaTUHKInDQlFRoZhxDrSIWiq8UQ"/>
+<div>
+<h4 class="font-serif text-base font-semibold text-stone-900">Beef Steak</h4>
+<p class="text-xs text-stone-500">Grilled to perfection with choice of sauce</p>
+</div>
+</div>
+<span class="font-bold text-stone-800 text-sm">$25.00</span>
+</div>
+<!-- Item 7 -->
+<div class="flex items-center justify-between group p-2 rounded-xl hover:bg-white transition-all">
+<div class="flex items-center gap-4">
+<img alt="Fish &amp; Chips" class="w-14 h-14 rounded-xl object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdHryc8Bll-EHP8MWqmDV7UPAbyqVMONKjWJ-j2Dc0zKy3kaXakS72Olf4NqXJRzy7ihv-9_oHFXdm4zDocLwFFutIlFpWeKL2pRI6DWVl68QKDOSSXgA9rlo7wyuiYzdbBlVIJ3irCy4Aogze96GOgd6B_y9-JLSPcCb-jFViHAohJhPZG7lnWbtvh_DuNGp2aiC-fDNk5xsSeX30LuJottVKc3rr8Ca6YSjLU11HvbtBNAmKIQI5Gg"/>
+<div>
+<h4 class="font-serif text-base font-semibold text-stone-900">Fish &amp; Chips</h4>
+<p class="text-xs text-stone-500">Crispy fish served with fries and tartar sauce</p>
+</div>
+</div>
+<span class="font-bold text-stone-800 text-sm">$15.50</span>
+</div>
+<!-- Item 8 -->
+<div class="flex items-center justify-between group p-2 rounded-xl hover:bg-white transition-all">
+<div class="flex items-center gap-4">
+<img alt="Mojito" class="w-14 h-14 rounded-xl object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9ORwB27zILuNUNtYH9w2wMyDQtuKTieqercTH_1jMFr1fkuDZD9pyRomf9jBRO-vvjGsvEzATmcRFTr2AMYx11xtwspTUKi0UW6ayxWyxwN8vuWg0DI3GzP48e52s5uB2K69Ir8PQjaeY-SYFKcqJZx9sJNpnGuX04i60S7tnMijrSWaTa6prDdXPemUKOfPbgysnqa-XDoZQ2A-oNM4FRwFzmfxyiHHPHrQgNSWLyxE6OCYf9-hf8w"/>
+<div>
+<h4 class="font-serif text-base font-semibold text-stone-900">Mojito</h4>
+<p class="text-xs text-stone-500">Refreshing mint lime drink with bubbly soda</p>
+</div>
+</div>
+<span class="font-bold text-stone-800 text-sm">$6.50</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: MenuSection -->
+<!-- BEGIN: BookTableSection -->
+<section class="py-16 lg:py-24 bg-white relative overflow-hidden" id="reservation">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Reservation Form Column -->
+<div class="lg:col-span-6">
+<div class="text-left mb-8">
+<span class="ornament-line">Book Your Table</span>
+<h2 class="text-3xl sm:text-4xl font-serif mt-2 text-stone-900">Reserve an Unforgettable Experience</h2>
+<p class="text-xs sm:text-sm text-stone-500 mt-2">Book in advance to secure the finest table for your special gathering.</p>
+</div>
+<form class="space-y-4" id="booking-form">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Name -->
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">Your Name</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-stone-400">
+<i class="w-4 h-4" data-lucide="user"></i>
+</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs focus:ring-brand-gold focus:border-brand-gold text-stone-800" placeholder="John Doe" required="" type="text"/>
+</div>
+</div>
+<!-- Phone -->
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">Phone Number</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-stone-400">
+<i class="w-4 h-4" data-lucide="phone"></i>
+</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs focus:ring-brand-gold focus:border-brand-gold text-stone-800" placeholder="+1 234 567 890" required="" type="tel"/>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Date -->
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">Date</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-stone-400">
+<i class="w-4 h-4" data-lucide="calendar"></i>
+</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs focus:ring-brand-gold focus:border-brand-gold text-stone-800" required="" type="date"/>
+</div>
+</div>
+<!-- Time -->
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">Time</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-stone-400">
+<i class="w-4 h-4" data-lucide="clock"></i>
+</span>
+<select class="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs focus:ring-brand-gold focus:border-brand-gold text-stone-800">
+<option>12:00 PM</option>
+<option>01:30 PM</option>
+<option>06:00 PM</option>
+<option>07:30 PM</option>
+<option>09:00 PM</option>
+</select>
+</div>
+</div>
+</div>
+<!-- People Count -->
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">No. of People</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-stone-400">
+<i class="w-4 h-4" data-lucide="users"></i>
+</span>
+<select class="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs focus:ring-brand-gold focus:border-brand-gold text-stone-800">
+<option>1 Person</option>
+<option selected="">2 People</option>
+<option>3 - 4 People</option>
+<option>5 - 8 People</option>
+<option>9+ People (Banquet)</option>
+</select>
+</div>
+</div>
+<button class="w-full mt-3 bg-brand-gold hover:bg-brand-goldHover text-black font-bold uppercase tracking-widest text-xs py-3.5 rounded-xl transition-all duration-300 shadow-md" type="submit">
+                Book Now
+              </button>
+</form>
+</div>
+<!-- Imagery Column -->
+<div class="lg:col-span-6 relative">
+<div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-50">
+<img alt="Table set with fine dining dishes and beverages" class="w-full h-[420px] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwUFmzeEFEeeVuP-Y9Lzct7qnfI1bSAMlOwOaqXq8DdBOWkuPUQeMsb1R8_GdgtuFXCmVPF_SpY10kJmg7wG_bo7p5IiKMEPdZATa59f7VTx-S0UnYNvA39x1dS9wdojH-F2FdzZ6zx5S6LxTkHzrwb8ej8_TgBZLIyvZfv2hdVeeDWkwvWvisJ_Pmc1eggStSWyMlh-Cs7Yd8FvMpNYJuyuUvHh35r1DgvuG50YvffgB3dcOyvqtUPA"/>
+</div>
+<!-- Floating quote tag -->
+<div class="absolute -bottom-5 left-6 bg-brand-dark text-white p-4 rounded-2xl shadow-xl border border-brand-gold/30 max-w-xs hidden sm:block">
+<p class="font-serif italic text-xs text-amber-200">"An unforgettable feast where taste and intimacy meet elegance."</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: BookTableSection -->
+<!-- BEGIN: TestimonialsSection -->
+<section class="py-16 lg:py-24 bg-brand-lightBg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<span class="ornament-line">What Our Customers Say</span>
+<h2 class="text-3xl sm:text-4xl font-serif mt-2 mb-12 text-stone-900">Guest Reflections</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+<!-- Testimonial 1 -->
+<div class="bg-white p-8 rounded-3xl shadow-sm border border-stone-100 flex flex-col justify-between hover:shadow-md transition-all">
+<div>
+<div class="flex items-center gap-1 text-amber-400 mb-4 text-sm">
+<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+</div>
+<p class="text-stone-600 text-xs sm:text-sm italic leading-relaxed mb-6">
+                "The food was absolutely amazing! The atmosphere and service were top notch. antix_r is our new weekend sanctuary."
+              </p>
+</div>
+<div class="flex items-center gap-3 pt-4 border-t border-stone-100">
+<img alt="James Wilson" class="w-11 h-11 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnj1TTlQRm3CfsGMkVf9Dxhehpg6W05yfHtjR26UuYm_VORU2xZ_SvN8a5mpnr-DZhYOvT52Bueo97a_wG7rV6IHR7xDI4NEZZzu0yU4voa4vmR2gBCZzzi43wlCjksA1bW_T1BoD9C1gdOuMbwNEen5RiO__oRfegXXiXNchLOrALl01fLKmz3Qi_l73qqvgfoQuwRh_lYsSuxSPVixpeCwEb5a-8MOOOZluq7JwmXWkIsCh89Qhugw"/>
+<div>
+<h4 class="font-serif text-sm font-bold text-stone-900">James Wilson</h4>
+<p class="text-[11px] text-stone-400 uppercase tracking-wider">Food Critic</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="bg-white p-8 rounded-3xl shadow-sm border border-stone-100 flex flex-col justify-between hover:shadow-md transition-all">
+<div>
+<div class="flex items-center gap-1 text-amber-400 mb-4 text-sm">
+<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+</div>
+<p class="text-stone-600 text-xs sm:text-sm italic leading-relaxed mb-6">
+                "A delightful experience from start to finish. Will definitely come back! The grilled salmon and truffled risotto are divine."
+              </p>
+</div>
+<div class="flex items-center gap-3 pt-4 border-t border-stone-100">
+<img alt="Sophia Brown" class="w-11 h-11 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUCdRRdKGf9aHi-H_9Zoc3c-KF5nX30PgY94M7O9zRf2ACXrcqMbh7XF_hVxO3zVExqyCI_ErcAUCSZVXGAFSAweT3RQhOcvDnqQ3kDEJjE_A1oeBhSVJ4q6L9c11xmGSN0Rmg-aMoDF6JzYYubbJo9NXgV11ILSBfmw9XzgMeOJOlwnermTDpW6w4e2eJm9FjNKfTpGpd_wn0xJE20grfbf5PNQUwJg9xTUQR6U-KlFwedmwWJnSe7w"/>
+<div>
+<h4 class="font-serif text-sm font-bold text-stone-900">Sophia Brown</h4>
+<p class="text-[11px] text-stone-400 uppercase tracking-wider">Loyal Patron</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="bg-white p-8 rounded-3xl shadow-sm border border-stone-100 flex flex-col justify-between hover:shadow-md transition-all">
+<div>
+<div class="flex items-center gap-1 text-amber-400 mb-4 text-sm">
+<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+</div>
+<p class="text-stone-600 text-xs sm:text-sm italic leading-relaxed mb-6">
+                "Best restaurant in town! The authentic flavors are unforgettable and the pastry selections are true culinary art."
+              </p>
+</div>
+<div class="flex items-center gap-3 pt-4 border-t border-stone-100">
+<img alt="Michael Lee" class="w-11 h-11 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACAimdyer2lXS6EEDCBcu99_2amaDXLxsiVqiPsDajWCi-FOOxYQ_RRJiZdjR1yhjS3xOMAPLlS4YsiZKDAk8S7ToNvYBSqpoGYYogqILIX5tS1AtmTK07BTKWeT3_KZ5P1-jkESZCy2wHekPoqvQ1H9JCeh4AnjmnTOItz3YefzeWFo2EE_v6YB2A2FLCZdYXmu--nDnCyfDHrcPe4aJ3fNf3MTKGuJIUV4t0tuGblbLORc02JLa6GA"/>
+<div>
+<h4 class="font-serif text-sm font-bold text-stone-900">Michael Lee</h4>
+<p class="text-[11px] text-stone-400 uppercase tracking-wider">Verified Guest</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-10">
+<button class="bg-brand-gold hover:bg-brand-goldHover text-black text-xs font-bold uppercase tracking-wider px-7 py-3 rounded-full transition-all">
+            View All Reviews
+          </button>
+</div>
+</div>
+</section>
+<!-- END: TestimonialsSection -->
+<!-- BEGIN: ChefsSection -->
+<section class="py-16 lg:py-24 bg-brand-dark text-white" id="chefs">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<span class="ornament-line">Meet Our Chefs</span>
+<h2 class="text-3xl sm:text-4xl font-serif mt-2 mb-12 text-white">Masters Behind the Flavor</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Chef 1 -->
+<div class="bg-brand-cardDark border border-brand-borderDark rounded-2xl p-5 group hover:border-brand-gold/60 transition-all text-center">
+<div class="w-40 h-40 mx-auto rounded-2xl overflow-hidden mb-4 border border-brand-borderDark">
+<img alt="Chef John" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLG8sdcxcZyKdloYA4b_7LBkeGzSShtEEcfKYwGsQzt30VqWd_H1VxUWpmkuTACxMFJoaFMOJCVh7cT3iBDCmfcHnp2lysfug6OzRNRWPQK7Pzms50rd-AzGcQOPTvKUzRsXCeO1ncjDCBigZioDoiEVGNRID3Ps6IPFHn1U5oya6nqcbhSFaTaYuWjZH1UKNibrm5dDY9EJFHwoblxi2x6EAfyR5Cfz_-tY4ez5RCRVHqJfEPPzuefw"/>
+</div>
+<h3 class="font-serif text-lg font-medium text-white">Chef John</h3>
+<p class="text-xs text-brand-gold font-medium mb-3">Head Chef</p>
+<div class="flex items-center justify-center gap-3 text-gray-400">
+<a aria-label="Chef John Instagram" class="hover:text-brand-gold transition-colors" href="#"><i class="w-4 h-4" data-lucide="instagram"></i></a>
+<a aria-label="Chef John Twitter" class="hover:text-brand-gold transition-colors" href="#"><i class="w-4 h-4" data-lucide="twitter"></i></a>
+</div>
+</div>
+<!-- Chef 2 -->
+<div class="bg-brand-cardDark border border-brand-borderDark rounded-2xl p-5 group hover:border-brand-gold/60 transition-all text-center">
+<div class="w-40 h-40 mx-auto rounded-2xl overflow-hidden mb-4 border border-brand-borderDark">
+<img alt="Chef Maria" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBculgntCwZOJBN37c1Puq_llXMekYkpLohgyA1iBw4twITLBTGPzjcMjyg2b24mj8JgBwenYbR_Uk8Rc7VFpo2Sw5pecg4IoMU3tFzLgiHaMeEXirlR_8JenyXApVe1hdpwpqgiRT-7uZFlWZpSkeu-krbpQLW0dwr1xgLvaPim0tEOyE5iZap2dcK1Js9KvtlonctZMtDhc7DhRTZdHI6vRsGqWv5v3PM2-BoGujTxHrAP3CWj59w0Q"/>
+</div>
+<h3 class="font-serif text-lg font-medium text-white">Chef Maria</h3>
+<p class="text-xs text-brand-gold font-medium mb-3">Italian Cuisine Expert</p>
+<div class="flex items-center justify-center gap-3 text-gray-400">
+<a aria-label="Chef Maria Instagram" class="hover:text-brand-gold transition-colors" href="#"><i class="w-4 h-4" data-lucide="instagram"></i></a>
+<a aria-label="Chef Maria Twitter" class="hover:text-brand-gold transition-colors" href="#"><i class="w-4 h-4" data-lucide="twitter"></i></a>
+</div>
+</div>
+<!-- Chef 3 -->
+<div class="bg-brand-cardDark border border-brand-borderDark rounded-2xl p-5 group hover:border-brand-gold/60 transition-all text-center">
+<div class="w-40 h-40 mx-auto rounded-2xl overflow-hidden mb-4 border border-brand-borderDark">
+<img alt="Chef David" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlHwu9IRAyynoOXlZvEq0rQnZXYqJKHjDbMb2FeeivDvsdBETAyi_rsTbWzQTQQ3Az87iFOwBJmr5rP0Bgq4XA3A2994xhC_SCGGDMIke2s_kbUlJUMAFpb3277K2hTzrqXvnudjEiLqHPVNWdh74D87ompWcpys86TxQv5uaQu8IBA4d-xA1NJvjf4NPP1n7pQHpiUs7sdeDefh8mC3ljTXLBoRICtaUKXpsQ9vSObe9l-LfV1krBRA"/>
+</div>
+<h3 class="font-serif text-lg font-medium text-white">Chef David</h3>
+<p class="text-xs text-brand-gold font-medium mb-3">Grill Specialist</p>
+<div class="flex items-center justify-center gap-3 text-gray-400">
+<a aria-label="Chef David Instagram" class="hover:text-brand-gold transition-colors" href="#"><i class="w-4 h-4" data-lucide="instagram"></i></a>
+<a aria-label="Chef David Twitter" class="hover:text-brand-gold transition-colors" href="#"><i class="w-4 h-4" data-lucide="twitter"></i></a>
+</div>
+</div>
+<!-- Chef 4 -->
+<div class="bg-brand-cardDark border border-brand-borderDark rounded-2xl p-5 group hover:border-brand-gold/60 transition-all text-center">
+<div class="w-40 h-40 mx-auto rounded-2xl overflow-hidden mb-4 border border-brand-borderDark">
+<img alt="Chef Emma" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQIaqMOkAWXiaxzLU8GBz7CEVOBGqu_5BFfs2LXmcz3ao69OFmGV1EPUQHCVX4MByKv0tt6Mhf-OVx_Q1Z62d-jp-N7-AWMjGGlkMg5Z1zyGu0v8eKaFdWMMetGXO89qV0xaN5_4NKx3_5_3p0ztj-4VhsG_FWVyuTa2GADgow-jsohLvsD-IhgNFZkCqT6cgMuhDMN64tzh8moj-TmKeSLK0Nk2dIzlevXWpnUI7onf7_l0-AoGmJhw"/>
+</div>
+<h3 class="font-serif text-lg font-medium text-white">Chef Emma</h3>
+<p class="text-xs text-brand-gold font-medium mb-3">Pastry Chef</p>
+<div class="flex items-center justify-center gap-3 text-gray-400">
+<a aria-label="Chef Emma Instagram" class="hover:text-brand-gold transition-colors" href="#"><i class="w-4 h-4" data-lucide="instagram"></i></a>
+<a aria-label="Chef Emma Twitter" class="hover:text-brand-gold transition-colors" href="#"><i class="w-4 h-4" data-lucide="twitter"></i></a>
+</div>
+</div>
+</div>
+<div class="mt-12">
+<button class="border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black font-semibold text-xs tracking-wider uppercase px-8 py-3 rounded-full transition-all">
+            View All Chefs
+          </button>
+</div>
+</div>
+</section>
+<!-- END: ChefsSection -->
+<!-- BEGIN: BlogSection -->
+<section class="py-16 lg:py-24 bg-white" id="blog">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<span class="ornament-line">Latest News &amp; Events</span>
+<h2 class="text-3xl sm:text-4xl font-serif mt-2 mb-12 text-stone-900">Stories From The Kitchen</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+<!-- Blog Card 1 -->
+<article class="bg-brand-lightBg rounded-2xl overflow-hidden border border-stone-100 group flex flex-col justify-between hover:shadow-lg transition-all">
+<div>
+<div class="h-48 overflow-hidden">
+<img alt="Summer Special Menu Launch" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlFqPa_QR7E0jJOuKp0ITJiJZvlv3pFjRPcRXZ8Y19EJTtdTe0cM9LvHPgrSBwGrC14AZdLcEmR4sMY5J_qFBSsYoJPNQgQFXcoh97R__eamnLXcf_mis9hH_L1iPyLnSKhGKMNy6lHOw3KgGLlcAJw8dWhWH0T4gjeZ4v8mNeTbrCZXyAnHJAcFWdMQal_1mEM3ECWQBimaS0hIIo2O0svAh31GKDi-Mwvch06PrOy-0_nSL8uzVoCA"/>
+</div>
+<div class="p-6">
+<span class="text-[11px] font-semibold text-brand-gold uppercase tracking-wider block mb-1">May 10, 2026</span>
+<h3 class="font-serif text-lg font-bold text-stone-900 mb-2">Summer Special Menu Launch</h3>
+<p class="text-xs text-stone-500 leading-relaxed">
+                  Try our new summer special menu featuring refreshing flavors, seasonal fruits, and artisanal dressings.
+                </p>
+</div>
+</div>
+<div class="px-6 pb-6">
+<a class="text-xs font-bold uppercase tracking-wider text-stone-800 hover:text-brand-gold transition-colors inline-flex items-center gap-1" href="#">
+                Read More <span>→</span>
+</a>
+</div>
+</article>
+<!-- Blog Card 2 -->
+<article class="bg-brand-lightBg rounded-2xl overflow-hidden border border-stone-100 group flex flex-col justify-between hover:shadow-lg transition-all">
+<div>
+<div class="h-48 overflow-hidden">
+<img alt="Live Music Every Friday" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB764K3i7zp2tIqEEs42xrSQNszxYuZYMuq9d3DXDcqU5uJPR3nGanclO9h0mT4mm-LnuiFGdpQG2Hzpt82MleXYQ8_1MGZl_KMLEDgfa3vjBJ1HELkJ08306beFs73eiFVAnBqpXWIDGQnobLd3zXp_DY9FVPsQzvZgVTuHHYsN54lANL9IhtLYT478rWLHTliPcCSr_lePqPKscMTEbjyv8Z91o3pSkaJtaogA1_Vfsg_0ukY6efKkQ"/>
+</div>
+<div class="p-6">
+<span class="text-[11px] font-semibold text-brand-gold uppercase tracking-wider block mb-1">May 5, 2026</span>
+<h3 class="font-serif text-lg font-bold text-stone-900 mb-2">Live Music Every Friday</h3>
+<p class="text-xs text-stone-500 leading-relaxed">
+                  Enjoy soulful acoustic jazz sets alongside your favorite hand-crafted cocktails and signature dishes.
+                </p>
+</div>
+</div>
+<div class="px-6 pb-6">
+<a class="text-xs font-bold uppercase tracking-wider text-stone-800 hover:text-brand-gold transition-colors inline-flex items-center gap-1" href="#">
+                Read More <span>→</span>
+</a>
+</div>
+</article>
+<!-- Blog Card 3 -->
+<article class="bg-brand-lightBg rounded-2xl overflow-hidden border border-stone-100 group flex flex-col justify-between hover:shadow-lg transition-all">
+<div>
+<div class="h-48 overflow-hidden">
+<img alt="Wine &amp; Dine Night" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYWSqCm1zn_zyqqwz_nxkDeho11CVudODyZHLTsY5eYyhJ5tdsmPM2-bEWL59nk7I70hFIfiHpk4meHZyH_IF2A-cKd-UzxAvID_P42zujkn2S0bYfs2WVjY7uwVJ5FMUcBhroSk-ysjZ1mWvQPCAue2VeA2S5tVjQhs1G0SlbDVCTuYj7iy2qiODvC3KF65MIdnj5jvF4KK-02nC88AcOPFCmMyN2jceBuGZfwjINIKQKjbdBvRMHZw"/>
+</div>
+<div class="p-6">
+<span class="text-[11px] font-semibold text-brand-gold uppercase tracking-wider block mb-1">April 28, 2026</span>
+<h3 class="font-serif text-lg font-bold text-stone-900 mb-2">Wine &amp; Dine Night</h3>
+<p class="text-xs text-stone-500 leading-relaxed">
+                  An exclusive evening paired with rare vintage reserves and exquisite gourmet tasting flights.
+                </p>
+</div>
+</div>
+<div class="px-6 pb-6">
+<a class="text-xs font-bold uppercase tracking-wider text-stone-800 hover:text-brand-gold transition-colors inline-flex items-center gap-1" href="#">
+                Read More <span>→</span>
+</a>
+</div>
+</article>
+</div>
+<div class="mt-12">
+<button class="bg-brand-gold hover:bg-brand-goldHover text-black text-xs font-bold uppercase tracking-wider px-8 py-3 rounded-full transition-all">
+            View All Posts
+          </button>
+</div>
+</div>
+</section>
+<!-- END: BlogSection -->
+</main>
+<!-- BEGIN: MainFooter -->
+<footer class="bg-brand-dark text-white pt-16 pb-8 border-t border-brand-borderDark" id="contact">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Primary Footer Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-brand-borderDark/80">
+<!-- Brand Description -->
+<div>
+<a class="font-serif text-2xl tracking-wider font-semibold text-white block mb-4" href="#">
+            antix_r
+          </a>
+<p class="text-xs text-gray-400 leading-relaxed mb-6">
+            We are passionate about serving delicious food and creating memorable culinary experiences for our valued guests.
+          </p>
+<div class="flex items-center space-x-3 text-brand-gold">
+<a aria-label="Facebook" class="w-8 h-8 rounded-full border border-brand-borderDark flex items-center justify-center hover:border-brand-gold transition-colors" href="#">
+<i class="w-4 h-4" data-lucide="facebook"></i>
+</a>
+<a aria-label="Instagram" class="w-8 h-8 rounded-full border border-brand-borderDark flex items-center justify-center hover:border-brand-gold transition-colors" href="#">
+<i class="w-4 h-4" data-lucide="instagram"></i>
+</a>
+<a aria-label="Twitter" class="w-8 h-8 rounded-full border border-brand-borderDark flex items-center justify-center hover:border-brand-gold transition-colors" href="#">
+<i class="w-4 h-4" data-lucide="twitter"></i>
+</a>
+<a aria-label="Youtube" class="w-8 h-8 rounded-full border border-brand-borderDark flex items-center justify-center hover:border-brand-gold transition-colors" href="#">
+<i class="w-4 h-4" data-lucide="youtube"></i>
+</a>
+</div>
+</div>
+<!-- Quick Links -->
+<div>
+<h4 class="font-serif text-base font-medium text-white mb-4">Quick Links</h4>
+<ul class="space-y-2 text-xs text-gray-400">
+<li><a class="hover:text-brand-gold transition-colors" href="#home">Home</a></li>
+<li><a class="hover:text-brand-gold transition-colors" href="#menu">Menu</a></li>
+<li><a class="hover:text-brand-gold transition-colors" href="#about">About Us</a></li>
+<li><a class="hover:text-brand-gold transition-colors" href="#chefs">Chefs</a></li>
+<li><a class="hover:text-brand-gold transition-colors" href="#blog">Blog</a></li>
+<li><a class="hover:text-brand-gold transition-colors" href="#contact">Contact</a></li>
+</ul>
+</div>
+<!-- Opening Hours -->
+<div>
+<h4 class="font-serif text-base font-medium text-white mb-4">Opening Hours</h4>
+<div class="space-y-3 text-xs text-gray-400">
+<div>
+<p class="text-white font-medium">Monday - Friday</p>
+<p>12:00 PM - 11:00 PM</p>
+</div>
+<div>
+<p class="text-white font-medium">Saturday - Sunday</p>
+<p>11:00 AM - 12:00 AM</p>
+</div>
+</div>
+</div>
+<!-- Contact Us -->
+<div>
+<h4 class="font-serif text-base font-medium text-white mb-4">Contact Us</h4>
+<ul class="space-y-3 text-xs text-gray-400">
+<li class="flex items-start gap-2.5">
+<i class="w-4 h-4 text-brand-gold shrink-0 mt-0.5" data-lucide="map-pin"></i>
+<span>123 Food Street, Flavor Town, FT 56789</span>
+</li>
+<li class="flex items-center gap-2.5">
+<i class="w-4 h-4 text-brand-gold shrink-0" data-lucide="phone"></i>
+<span>+1 234 567 890</span>
+</li>
+<li class="flex items-center gap-2.5">
+<i class="w-4 h-4 text-brand-gold shrink-0" data-lucide="mail"></i>
+<span>info@antix_r.com</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Bottom Bar -->
+<div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+<p>© 2026 antix_r. All Rights Reserved.</p>
+<div class="flex space-x-6">
+<a class="hover:text-gray-300 transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-gray-300 transition-colors" href="#">Terms &amp; Conditions</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: MainFooter -->
+<!-- BEGIN: InteractiveScripts -->
+<script data-purpose="lucide-icons-init">
+    // Initialize Lucide icons
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+    });
+  </script>
+<script data-purpose="mobile-navigation">
+    // Mobile navigation toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Close menu when a link is clicked
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+  </script>
+<script data-purpose="booking-form-handler">
+    // Reservation submit interaction
+    const bookingForm = document.getElementById('booking-form');
+    if (bookingForm) {
+      bookingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you! Your table reservation request has been submitted. Our concierge will contact you shortly.');
+        bookingForm.reset();
+      });
+    }
+  </script>
+<script data-purpose="pwa-handler">
+    // PWA BeforeInstallPrompt Handling
+    let deferredPrompt;
+    const pwaBanner = document.getElementById('pwa-install-banner');
+    const pwaInstallBtn = document.getElementById('pwa-install-btn');
+    const pwaCloseBtn = document.getElementById('pwa-close-btn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (pwaBanner) {
+        pwaBanner.classList.remove('hidden');
+      }
+    });
+
+    if (pwaInstallBtn) {
+      pwaInstallBtn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          deferredPrompt = null;
+          if (pwaBanner) pwaBanner.classList.add('hidden');
+        }
+      });
+    }
+
+    if (pwaCloseBtn && pwaBanner) {
+      pwaCloseBtn.addEventListener('click', () => {
+        pwaBanner.classList.add('hidden');
+      });
+    }
+  </script>
+<!-- END: InteractiveScripts -->
+</body></html>
