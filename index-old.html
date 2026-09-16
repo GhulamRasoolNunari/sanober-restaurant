@@ -10,15 +10,7 @@
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
 <meta content="Sanober Restaurant" name="apple-mobile-web-app-title"/>
 <meta content="Experience the perfect blend of taste, ambiance, and hospitality at Sanober Restaurant." name="description"/>
-<meta content="#141210" name="theme-color"/>
-<meta content="yes" name="mobile-web-app-capable"/>
-<meta content="yes" name="apple-mobile-web-app-capable"/>
-<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
-<meta content="Sanober Restaurant" name="apple-mobile-web-app-title"/>
-<link href="./manifest.json" rel="manifest"/>
-<link href="./favicon-32.png" rel="icon" type="image/png" sizes="32x32"/>
-<link href="./icon-192.png" rel="icon" type="image/png" sizes="192x192"/>
-<link href="./icon-180.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="data:application/manifest+json,%7B%22name%22%3A%22Sanober%20Restaurant%22%2C%22short_name%22%3A%22Sanober%20Restaurant%22%2C%22start_url%22%3A%22%2F%22%2C%22display%22%3A%22standalone%22%2C%2２background_color%２２%3A%２２%２31a1816%２２%2C%２２theme_color%２２%3A%２２%２3c28c46%２２%7D" rel="manifest"/>
 <!-- Google Fonts & Lucide Icons CDN -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -89,7 +81,9 @@
 <!-- BEGIN: PWA Install Banner -->
 <div class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-11/12 max-w-md bg-brand-cardDark text-white p-4 rounded-2xl shadow-2xl border border-brand-gold/30 flex items-center justify-between gap-4 backdrop-blur-lg" id="pwa-install-banner">
 <div class="flex items-center gap-3">
-<img src="./icon-72.png" alt="Sanober Restaurant" class="w-10 h-10 rounded-xl object-cover border border-brand-gold/40" width="72" height="72"/>
+<div class="w-10 h-10 rounded-xl bg-brand-gold flex items-center justify-center font-serif text-xl font-bold text-black">
+        a
+      </div>
 <div>
 <p class="font-semibold text-sm">Install Sanober Restaurant App</p>
 <p class="text-xs text-gray-400">Order faster &amp; reserve tables</p>
@@ -950,21 +944,6 @@
 </div>
 </footer>
 <!-- END: MainFooter -->
-<!-- BEGIN: PWA Service Worker Registration -->
-<script data-purpose="pwa-service-worker">
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./service-worker.js', { scope: './' })
-        .then(registration => {
-          console.log('Sanober PWA service worker registered:', registration.scope);
-        })
-        .catch(error => {
-          console.error('Sanober PWA service worker registration failed:', error);
-        });
-    });
-  }
-</script>
-<!-- END: PWA Service Worker Registration -->
 <!-- BEGIN: InteractiveScripts -->
 <script data-purpose="lucide-icons-init">
     // Initialize Lucide icons
@@ -1004,40 +983,27 @@
     }
   </script>
 <script data-purpose="pwa-handler">
-    // PWA install prompt handling
-    let deferredPrompt = null;
+    // PWA BeforeInstallPrompt Handling
+    let deferredPrompt;
     const pwaBanner = document.getElementById('pwa-install-banner');
     const pwaInstallBtn = document.getElementById('pwa-install-btn');
     const pwaCloseBtn = document.getElementById('pwa-close-btn');
 
-    const isStandalone =
-      window.matchMedia('(display-mode: standalone)').matches ||
-      window.navigator.standalone === true;
-
-    // Do not show the install banner when the app is already installed/opened standalone.
-    if (isStandalone && pwaBanner) {
-      pwaBanner.classList.add('hidden');
-    }
-
-    window.addEventListener('beforeinstallprompt', (event) => {
-      event.preventDefault();
-      deferredPrompt = event;
-
-      if (!isStandalone && pwaBanner) {
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (pwaBanner) {
         pwaBanner.classList.remove('hidden');
       }
     });
 
     if (pwaInstallBtn) {
       pwaInstallBtn.addEventListener('click', async () => {
-        if (!deferredPrompt) return;
-
-        deferredPrompt.prompt();
-        await deferredPrompt.userChoice;
-        deferredPrompt = null;
-
-        if (pwaBanner) {
-          pwaBanner.classList.add('hidden');
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          deferredPrompt = null;
+          if (pwaBanner) pwaBanner.classList.add('hidden');
         }
       });
     }
@@ -1047,13 +1013,6 @@
         pwaBanner.classList.add('hidden');
       });
     }
-
-    window.addEventListener('appinstalled', () => {
-      deferredPrompt = null;
-      if (pwaBanner) {
-        pwaBanner.classList.add('hidden');
-      }
-    });
   </script>
 <!-- END: InteractiveScripts -->
 </body></html>
